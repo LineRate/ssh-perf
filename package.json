@@ -1,0 +1,30 @@
+{
+  "name": "ssh-perf",
+  "version": "0.2.0",
+  "description": "A performance testing tool for SSH, SCP, and SFTP.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LineRate/ssh-perf"
+  },
+  "keywords": [
+    "ssh",
+    "scp",
+    "sftp",
+    "performance"
+  ],
+  "author": "linerate",
+  "license": "GPL-2.0",
+  "dependencies": {
+    "async": "^0.9.0",
+    "nomnom": "^1.8.1",
+    "ssh2": "^0.4.8",
+    "underscore": "^1.8.3"
+  },
+  "bin": {
+      "ssh-perf": "index.js"
+  }
+}
