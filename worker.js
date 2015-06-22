@@ -182,16 +182,31 @@ function doSingleThing(args, thing, done) {
     }).on('end', function handleEnd() {
         _connDone();
         _actionDone();
-    // connect
-    }).connect({
-        host: args.host,
-        username: args.user,
-        password: args.password,
-        port: args.port,
-        keepaliveInterval: 30*1000,
-        keepaliveCountMax: 1000,
-        readyTimeout: 30*1000*1000,
     });
+    // connect
+    if (args.password !== '') {
+        conn.connect({
+            host: args.host,
+            username: args.user,
+            password: args.password,
+            port: args.port,
+            keepaliveInterval: 30*1000,
+            keepaliveCountMax: 1000,
+            readyTimeout: 30*1000*1000,
+        });
+    } else if (args.key !== '') {
+        conn.connect({
+            host: args.host,
+            username: args.user,
+            privateKey: args.key,
+            port: args.port,
+            keepaliveInterval: 30*1000,
+            keepaliveCountMax: 1000,
+            readyTimeout: 30*1000*1000,
+        });
+    } else {
+        throw new Error("No password and no private key - one of them must be supplied to log in.");
+    }
     // record the opened connection
     NUM_OPEN_CONNECTIONS.value += 1;
     open = true;

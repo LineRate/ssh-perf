@@ -127,8 +127,12 @@ function getCliArgs() {
         },
         'password': {
             help: "The password to log in with",
-            required: true,
-            position: 2
+            default: '',
+        },
+        'key': {
+            help: "The private key to log in with",
+            metavar: 'PATH',
+            default: '',
         },
         'port': {
             help: "The port to connect to (" + defaultPort + ")",
@@ -192,6 +196,9 @@ function getCliArgs() {
         message.fatalError("Unrecognized arguments: %j", extras);
     }
     // Validate arg combos
+    if (args.password === '' && args.key === '') {
+         message.fatalError("You must specify either a password or a key");
+    }
     if (args.mode != "sftp" && args.mode != "scp" && args.put !== '') {
         message.fatalError("'--put' may only be used in conjunction with '--mode sftp' or '--mode scp'");
     }
@@ -219,6 +226,10 @@ function getCliArgs() {
         console.log(args);
     } else {
         message.status("args: %j", args);
+    }
+    // Translate the key arg (read the file)
+    if (args.key !== '') {
+        args.key = fs.readFileSync(args.key);
     }
     return args;
 }

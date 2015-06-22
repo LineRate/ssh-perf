@@ -193,37 +193,47 @@ function testCredentials(args, done) {
     // Tests the SSH credentials so that the whole test isn't just FAAAAAAILLLL
     var user = args.user;
     var host = args.host;
-    var password = args.password;
-    var port = args.port
+    var port = args.port;
     // make a new connection
     var conn = new ssh2.Client();
     // SSH Connect
     conn
-        .on('ready', function handleReady() {
-            // Success
-            message.status("Test connection (ssh %s@%s with password %s) succeeded.", user, host, password);
-            conn.end();
-        })
-        .on('error', function handleError(err) {
-            // Failure
-            message.error("Error on test connection (ssh %s@%s with password %s).", user, host, password);
-            done(err);
-        })
-        .on('close', function handleEnd(hadError) {
-            // Connection test is over
-            // Error messaging happened in the error callback
-            message.status("Test connection (ssh %s@%s with password %s) closed.", user, host, password);
-            // call done only if there was no error (in error conditions, error was already called)
-            if (! hadError) {
-                done()
-            }
-        })
-        .connect({
+    .on('ready', function handleReady() {
+        // Success
+        message.status("Test connection (ssh %s@%s) succeeded.", user, host);
+        conn.end();
+    })
+    .on('error', function handleError(err) {
+        // Failure
+        message.error("Error on test connection (ssh %s@%s).", user, host);
+        done(err);
+    })
+    .on('close', function handleEnd(hadError) {
+        // Connection test is over
+        // Error messaging happened in the error callback
+        message.status("Test connection (ssh %s@%s) closed.", user, host);
+        // call done only if there was no error (in error conditions, error was already called)
+        if (! hadError) {
+            done();
+        }
+    });
+    if (args.password !== '') {
+        conn.connect({
             host: host,
             username: user,
-            password: password,
+            password: args.password,
             port: port,
         });
+    } else if (args.key !== '') {
+        conn.connect({
+            host: host,
+            username: user,
+            privateKey: args.key,
+            port: port,
+        });
+    } else {
+        throw new Error("No password and no private key - one of them must be supplied to log in.");
+    }
 }
 
 
