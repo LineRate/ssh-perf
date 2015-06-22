@@ -301,7 +301,7 @@ function logFinalStats() {
         totals: totals,
         max_conns: MAX_OPEN_CONNECTIONS,
     };
-    message.status(util.inspect(shortReport, {depth:10}));
+    message.status(JSON.stringify(shortReport, null, 4));
 }
 
 
