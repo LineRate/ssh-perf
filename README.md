@@ -114,6 +114,7 @@ Options:
    -t INT, --max_conn_timeout INT   The time (in seconds) to wait before assuming max connections reached if no new conns have been established.  [30]
    -P FILE, --put FILE              (SCP and SFTP only) Put a local file onto the remote server  []
    -G FILE, --get FILE              (SCP and SFTP only) Get a remote file onto the local client  []
+   --debug                          Print SSH Debug information  [false]
 
 Performance testing tool for SSH, SCP, and SFTP.
 

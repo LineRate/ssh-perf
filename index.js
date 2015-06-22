@@ -196,6 +196,11 @@ function getCliArgs() {
             help: "(SCP and SFTP only) Get a remote file onto the local client",
             default: '',
             metavar: 'FILE'
+        },
+        'debug': {
+            help: "Print SSH Debug information",
+            default: false,
+            flag: true,
         }
     };
     // Get the CLI arguments

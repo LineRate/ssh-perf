@@ -216,6 +216,7 @@ function doSingleThing(args, thing, done) {
             keepaliveInterval: 30*1000,
             keepaliveCountMax: 1000,
             readyTimeout: 30*1000*1000,
+            debug: function(str) { if (args.debug) {console.error(str); }}
         });
     } else {
         throw new Error("No password and no private key - one of them must be supplied to log in.");
