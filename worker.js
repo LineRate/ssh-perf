@@ -187,6 +187,7 @@ function doSingleThing(args, thing, done) {
         host: args.host,
         username: args.user,
         password: args.password,
+        port: args.port,
         keepaliveInterval: 30*1000,
         keepaliveCountMax: 1000,
         readyTimeout: 30*1000*1000,

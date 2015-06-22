@@ -27,6 +27,7 @@ host         The host to log in to
 password     The password to log in with
 
 Options:
+   --port INT                       The port to connect to (22)  [22]
    -m STRING, --mode STRING         The mode of testing (connections,execs,sftp,scp,max-connections)  [connections]
    -c INT, --concurrency INT        How many requests can be open simultaneously  [1]
    -p INT, --processes INT          How many processes to run in  [1]

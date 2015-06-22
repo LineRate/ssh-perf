@@ -113,6 +113,7 @@ function registerForCtrlC() {
 function getCliArgs() {
     // choices for test mode
     var testModes = _.keys(TEST_MODE_MAP);
+    var defaultPort = 22;
     var options = {
         'user': {
             help: "The user to log in as",
@@ -128,6 +129,11 @@ function getCliArgs() {
             help: "The password to log in with",
             required: true,
             position: 2
+        },
+        'port': {
+            help: "The port to connect to (" + defaultPort + ")",
+            default: defaultPort,
+            metavar: 'INT'
         },
         'mode': {
             abbr: 'm',

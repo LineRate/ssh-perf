@@ -194,6 +194,7 @@ function testCredentials(args, done) {
     var user = args.user;
     var host = args.host;
     var password = args.password;
+    var port = args.port
     // make a new connection
     var conn = new ssh2.Client();
     // SSH Connect
@@ -221,6 +222,7 @@ function testCredentials(args, done) {
             host: host,
             username: user,
             password: password,
+            port: port,
         });
 }
 
