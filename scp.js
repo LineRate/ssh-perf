@@ -76,7 +76,6 @@ function _scpPut(conn, start, args, done) {
             });
             stream.on('close', function handleClose(code, signal) {
                 // stream closed with good exit code
-                //if (code === 0 || (code === 1 && stdout === '' && stderr === '')) {
                 if (code === 0) {
                     // successful exec
                     results.handleSingleSuccess(start);
@@ -88,7 +87,6 @@ function _scpPut(conn, start, args, done) {
             })
             .on('data', function handleStdOut(chunk) {
                 var buf = new Buffer(chunk);
-                //message.status(util.inspect(buf));
                 if (midWarning) {
                     excess += buf.toString();
                     lastIndex = excess.indexOf('\n');
@@ -107,7 +105,6 @@ function _scpPut(conn, start, args, done) {
                     excess = buf.slice(1).toString();
                     if (indicator === 0) {
                         buf = buf.slice(1);
-                        //message.status('scp-ok');
                         stream.emit('scp-ok');
                     } else {
                         message.warning("bad response: %d", indicator);
@@ -144,16 +141,11 @@ function _scpPut(conn, start, args, done) {
                         var fileMessage = createFileMessage(stats, args.put);
                         // send them
                         stream.write(fileMessage);
-                        stdin += fileMessage;
-                        //message.status('sent ', fileMessage);
-                        //stream.write(timeMessage, 'utf8');
                         // send the file
                         // now we can send the file
                         var sendFileData = function sendFileData() {
                             fileStream.on('data', function sendChunk(chunk) {
                                 stream.write(chunk);
-                                stdin += chunk;
-                                //message.status('sent ', chunk);
                                 results.WORKER_TOTALS.bytes_sum += chunk.length;
                             });
                         };
