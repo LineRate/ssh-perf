@@ -134,6 +134,10 @@ function getCliArgs() {
             metavar: 'PATH',
             default: '',
         },
+        'agent': {
+            help: "The ssh-agent's socket path, if using an agent",
+            metavar: 'PATH'
+        },
         'port': {
             help: "The port to connect to (" + defaultPort + ")",
             default: defaultPort,

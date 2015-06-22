@@ -200,6 +200,8 @@ function doSingleThing(args, thing, done) {
             username: args.user,
             privateKey: args.key,
             port: args.port,
+            agent: args.agent,
+            agentForward: true,
             keepaliveInterval: 30*1000,
             keepaliveCountMax: 1000,
             readyTimeout: 30*1000*1000,

@@ -29,6 +29,7 @@ Options:
    --port INT                       The port to connect to (22)  [22]
    --password                       The password to log in with  []
    --key PATH                       The private key to log in with  []
+   --agent PATH                     The ssh-agent's socket path, if using an agent
    -m STRING, --mode STRING         The mode of testing (connections,execs,sftp,scp,max-connections)  [connections]
    -c INT, --concurrency INT        How many requests can be open simultaneously  [1]
    -p INT, --processes INT          How many processes to run in  [1]

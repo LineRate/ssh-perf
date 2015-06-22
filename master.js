@@ -230,6 +230,8 @@ function testCredentials(args, done) {
             username: user,
             privateKey: args.key,
             port: port,
+            agent: args.agent,
+            agentForward: true,
         });
     } else {
         throw new Error("No password and no private key - one of them must be supplied to log in.");
