@@ -1,6 +1,6 @@
 {
   "name": "ssh-perf",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "A performance testing tool for SSH, SCP, and SFTP.",
   "main": "index.js",
   "scripts": {
@@ -25,6 +25,6 @@
     "underscore": "^1.8.3"
   },
   "bin": {
-      "ssh-perf": "index.js"
+    "ssh-perf": "index.js"
   }
 }
