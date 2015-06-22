@@ -108,7 +108,7 @@ Options:
    --key PATH                       The private key to log in with  []
    --agent PATH                     The ssh-agent's socket path, if using an agent
    -m STRING, --mode STRING         The mode of testing (connections,execs,sftp,scp,max-connections)  [connections]
-   -c INT, --concurrency INT        How many requests can be open simultaneously  [1]
+   -c INT, --concurrency INT        Concurrent flows per process  [1]
    -p INT, --processes INT          How many processes to run in  [1]
    -d INT, --delay INT              The delay (in milliseconds) between establishing connections  [0]
    -t INT, --max_conn_timeout INT   The time (in seconds) to wait before assuming max connections reached if no new conns have been established.  [30]

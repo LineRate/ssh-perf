@@ -163,7 +163,7 @@ function getCliArgs() {
         },
         'concurrency': {
             abbr: 'c',
-            help: "How many requests can be open simultaneously",
+            help: "Concurrent flows per process",
             default: 1,
             metavar: 'INT'
         },
@@ -201,7 +201,7 @@ function getCliArgs() {
     // Get the CLI arguments
     var args = nomnom
         .help("Performance testing tool for SSH, SCP, and SFTP." +
-              "\n\nTool will run until stopped with Ctrl-C.")
+              "\n\nTool will run until stopped with Ctrl-C.\n")
         .options(options)
         .parse();
     // Ensure only the designated options were passed in.
