@@ -145,8 +145,15 @@ function _scpPut(conn, start, args, done) {
                         // now we can send the file
                         var sendFileData = function sendFileData() {
                             fileStream.on('data', function sendChunk(chunk) {
-                                stream.write(chunk);
+                                var safe = stream.write(chunk);
                                 results.WORKER_TOTALS.bytes_sum += chunk.length;
+                                if (!safe) {
+                                    fileStream.pause();
+                                    stream.once('drain', function restart() {
+                                        safe = true;
+                                        fileStream.resume();
+                                    });
+                                }
                             });
                         };
                         stream.once('scp-ok', sendFileData);
